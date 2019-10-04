@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+        *{margin:0px; padding:0px;}
+        body{font-size:14px;}
+        #app{width:1000px; margin:10px auto;}
+        #bigImg{float:left; margin-right:10px;}
+        .item{
+            width:340px;
+            line-height:30px;
+            box-sizing: border-box;
+            background:#f7f7f7;
+            border:1px solid #f7f7f7;
+            margin:10px 0px;
+            float:left;
+        }
+        .item img{vertical-align:middle; margin-right:10px;}
+        .select{ border:1px solid darkred;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <img id="bigImg" :src="foods[equallindex].imgBigUrl"/>
+    <p>零食选择</p>
+    <div v-for="(item,index) in foods" :key="index" :class=['item',{'select':equallindex==index}] @click="findIndex(index)">
+        <img :src="item.imgUrl">
+        <span>{{item.desc}}</span>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data() {
+            return {
+                foods:[
+                    {desc:'手撕面包',
+                        imgUrl:'img/手撕面包(small).jpg',
+                        imgBigUrl:'img/手撕面包.jpg'},
+                    {desc:'肉松饼',
+                        imgUrl:'img/肉松饼(small).jpg',
+                        imgBigUrl:'img/肉松饼.jpg'},
+                    {desc:'饼干',
+                        imgUrl:'img/饼干(small).jpg',
+                        imgBigUrl:'img/饼干.jpg'},
+                    {desc:'麻花',
+                        imgUrl:'img/麻花(small).jpg',
+                        imgBigUrl:'img/麻花.jpg'}
+                ],
+                equallindex:0
+            };
+        },
+        methods:{
+            findIndex:function (index) {
+              this.equallindex=index;
+            }
+        }
+
+    })
+</script>
+</body>
+</html>
